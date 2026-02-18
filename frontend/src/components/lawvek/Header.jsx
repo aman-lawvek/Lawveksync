@@ -68,12 +68,11 @@ export const Header = ({ onOpenModal }) => {
     <>
       <header className="fixed top-0 left-0 right-0 z-40">
         {/* Elegant backdrop on scroll */}
-        <div className={`absolute inset-0 transition-all duration-500 ${
-          scrolled 
-            ? 'bg-[#FFFEFA]/95 backdrop-blur-2xl shadow-[0_1px_2px_rgba(0,0,0,0.03)]' 
+        <div className={`absolute inset-0 transition-all duration-500 ${scrolled
+            ? 'bg-[#FFFEFA]/95 backdrop-blur-2xl shadow-[0_1px_2px_rgba(0,0,0,0.03)]'
             : ''
-        }`} />
-        
+          }`} />
+
         <div className="relative max-w-[1320px] mx-auto px-6 lg:px-10">
           <div className="flex items-center justify-between h-[76px]">
             {/* Logo */}
@@ -109,8 +108,8 @@ export const Header = ({ onOpenModal }) => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <span>Get Priority Access</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" strokeWidth={2} />
+                <span>Talk to Us/span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" strokeWidth={2} />
               </motion.button>
             </div>
 
@@ -216,7 +215,7 @@ export const Header = ({ onOpenModal }) => {
                     className="w-full bg-white text-[#1a1a1a] rounded-full py-4 font-semibold"
                     whileTap={{ scale: 0.98 }}
                   >
-                    Get Priority Access
+                    Talk to Us
                   </motion.button>
                 </motion.div>
               </div>

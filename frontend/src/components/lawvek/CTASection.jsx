@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 export const CTASection = ({ onOpenModal }) => {
   return (
-    <section 
+    <section
       id="cta"
       className="relative py-24 md:py-32"
       data-testid="cta-section"
@@ -21,7 +21,7 @@ export const CTASection = ({ onOpenModal }) => {
             <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-500 rounded-full blur-3xl" />
           </div>
-          
+
           <div className="relative z-10 max-w-2xl mx-auto">
             <p className="text-sm font-medium text-amber-400 tracking-wide uppercase mb-4">
               Get Started
@@ -32,7 +32,7 @@ export const CTASection = ({ onOpenModal }) => {
             <p className="text-base md:text-lg text-white/60 mb-10">
               Join the waitlist and be first to experience AI-powered legal services.
             </p>
-            
+
             {/* CTA Button */}
             <motion.button
               onClick={onOpenModal}
@@ -42,7 +42,7 @@ export const CTASection = ({ onOpenModal }) => {
               data-testid="cta-upload-button"
             >
               <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-[#1a1a1a]/5 to-transparent" />
-              <span className="relative z-10">Get Priority Access</span>
+              <span className="relative z-10">Talk to Us</span>
               <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2} />
             </motion.button>
 
