@@ -5,13 +5,11 @@ import {
   Header,
   HeroSection,
   TrustTicker,
-  ProblemSection,
+  WhyLawvekSection,
   ApproachSection,
   HowItWorksSection,
   BenefitsSection,
   IntegrationsSection,
-  ComparisonSection,
-  SecuritySection,
   CTASection,
   EarlyAccessModal,
   Footer,
@@ -42,12 +40,11 @@ const LandingPage = () => {
       <main className="relative">
         <HeroSection onOpenModal={openModal} />
         <TrustTicker />
-        <ProblemSection />
+        <WhyLawvekSection />
         <ApproachSection />
         <HowItWorksSection />
         <BenefitsSection />
         <IntegrationsSection />
-        <ComparisonSection />
         <CTASection onOpenModal={openModal} />
       </main>
       <Footer />

@@ -14,3 +14,4 @@ export { CTASection } from './CTASection';
 export { EarlyAccessModal } from './EarlyAccessModal';
 export { Footer } from './Footer';
 export { SubtleNetworkBg } from './SubtleNetworkBg';
+export { WhyLawvekSection } from './WhyLawvekSection';
