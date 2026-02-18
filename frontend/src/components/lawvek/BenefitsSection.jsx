@@ -20,8 +20,8 @@ export const BenefitsSection = () => {
     },
     {
       icon: Users,
-      title: 'Expert Network',
-      description: '500+ licensed attorneys available for complex reviews.',
+      title: 'Built in Risk Scoring',
+      description: 'Instant visibility into legal and commercial risk exposure.',
     },
     {
       icon: FileText,
