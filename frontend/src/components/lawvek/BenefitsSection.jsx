@@ -36,7 +36,8 @@ export const BenefitsSection = () => {
   ];
 
   return (
-    <section 
+    <section
+      id="benefits"
       className="relative py-24 md:py-32 bg-[#FAFAF8]"
       data-testid="benefits-section"
     >

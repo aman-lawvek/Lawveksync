@@ -29,6 +29,8 @@ export const Header = ({ onOpenModal }) => {
   const navLinks = [
     { label: 'Product', href: '#approach' },
     { label: 'How It Works', href: '#how-it-works' },
+    { label: 'Benefits', href: '#benefits' },
+    { label: 'Integrations', href: '#integrations' },
   ];
 
   const menuVariants = {
