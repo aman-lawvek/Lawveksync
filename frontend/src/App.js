@@ -19,7 +19,7 @@ import {
 
 const LandingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   // Queue counter state - persisted in localStorage
   const [queueCount, setQueueCount] = useState(() => {
     const saved = localStorage.getItem('lawvek_queue_count');
@@ -48,13 +48,12 @@ const LandingPage = () => {
         <BenefitsSection />
         <IntegrationsSection />
         <ComparisonSection />
-        <SecuritySection />
         <CTASection onOpenModal={openModal} />
       </main>
       <Footer />
-      <EarlyAccessModal 
-        isOpen={isModalOpen} 
-        onClose={closeModal} 
+      <EarlyAccessModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
         onSuccess={incrementQueue}
         queueCount={queueCount}
       />
