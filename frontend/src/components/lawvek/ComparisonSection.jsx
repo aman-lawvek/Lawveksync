@@ -3,7 +3,7 @@ import { Check, X } from 'lucide-react';
 
 export const ComparisonSection = () => {
   const lawvekBenefits = [
-    'Fixed pricing per contract',
+    'Fixed pricing per contract at $250',
     'Contract reviews done in hours by experienced attorneys',
     'Work directly with your lawyer in Slack',
     'Experienced, U.S.-barred attorneys on every contract',
@@ -17,7 +17,7 @@ export const ComparisonSection = () => {
   ];
 
   return (
-    <section 
+    <section
       className="bg-[#0F172A] py-24 md:py-32"
       data-testid="comparison-section"
     >

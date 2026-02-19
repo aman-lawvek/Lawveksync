@@ -6,12 +6,12 @@ export const WhyLawvekSection = () => {
         {
             feature: 'Cost',
             traditional: '$1,000-$5,000+ per contract, billed hourly with unpredictable costs',
-            lawvek: 'Fixed pricing per contract',
+            lawvek: 'Fixed pricing per contract at $250',
         },
         {
             feature: 'Speed',
             traditional: 'Days or weeks to turn a contract',
-            lawvek: 'Contract reviews done in hours by experienced attorneys',
+            lawvek: 'Contract reviews delivered within 3 hours',
         },
         {
             feature: 'Process',
