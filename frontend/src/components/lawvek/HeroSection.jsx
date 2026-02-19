@@ -176,87 +176,95 @@ export const HeroSection = ({ onOpenModal }) => {
       {/* Bottom fade for seamless transition to ticker */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#FAFAFA] via-[#FAFAFA]/80 to-transparent pointer-events-none" />
 
-      {/* Content - Centered with protective backdrop */}
+      {/* Content - Centered with protective backdrop - Judicial breathing room */}
       <motion.div
-        className="relative z-10 max-w-4xl mx-auto px-6 text-center py-32"
+        className="relative z-10 max-w-5xl mx-auto px-6 text-center -mt-20 md:-mt-32"
         style={{ y: textY, opacity }}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Subtle protective backdrop for readability */}
-        <div className="absolute inset-0 -mx-12 -my-8 bg-gradient-radial from-white/70 via-white/40 to-transparent rounded-3xl blur-xl pointer-events-none" />
+        {/* Subtle protective backdrop for readability - 6% overlay */}
+        <div className="absolute inset-0 -mx-24 -my-16 bg-white/[0.06] backdrop-blur-[2px] rounded-[100px] pointer-events-none" />
 
-        {/* Badge */}
+        {/* Badge - Premium Navigation feel */}
         <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          initial={{ opacity: 0, y: 20, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mb-10"
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mb-8"
         >
-          <motion.span
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/95 backdrop-blur-sm border border-amber-200/80 rounded-full shadow-sm shadow-amber-100/50"
-            whileHover={{ scale: 1.05, borderColor: 'rgba(245, 158, 11, 0.5)' }}
-            transition={{ duration: 0.3 }}
-          >
-            <span className="text-sm font-medium text-amber-600 tracking-wide">
-              Lawyer Assisted AI
-            </span>
-          </motion.span>
+          <span className="text-[14px] font-medium text-[#0E5A45] tracking-[0.06em] uppercase">
+            Lawyer Assisted AI
+          </span>
         </motion.div>
 
-        {/* Headline */}
+        {/* Headline - Editorial Rhythm (88px -> 96px) */}
         <motion.h1
-          className="relative text-5xl sm:text-6xl lg:text-7xl font-serif tracking-[-0.02em] leading-[1.05] text-[#1a1a1a] mb-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="relative font-serif tracking-[-1.5px] leading-[1.02] text-[#0F0F0F] mb-10"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
-          Contract review<br />
-          <span className="text-[#1a1a1a]">without </span>
-          <motion.span
-            className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-emerald-400 to-cyan-600 inline-block"
-            animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              filter: ["brightness(1)", "brightness(1.2)", "brightness(1)"]
-            }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            style={{ backgroundSize: '200% auto' }}
-          >
-            hourly billing.
-          </motion.span>
+          <div className="text-[72px] md:text-[88px] font-medium leading-[1.05]">
+            Contract review
+          </div>
+          <div className="text-[80px] md:text-[96px] font-medium -mt-2">
+            <span className="text-[#0F0F0F]">without </span>
+            <motion.span
+              className="text-transparent bg-clip-text bg-gradient-to-r from-[#0E5A45] via-[#124E3B] to-[#0E5A45] inline-block font-medium"
+              animate={{
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+              style={{ backgroundSize: '200% auto' }}
+            >
+              hourly billing.
+            </motion.span>
+          </div>
         </motion.h1>
 
-        {/* Description */}
+        {/* Description - Focused & Confident */}
         <motion.p
-          className="relative text-lg md:text-xl font-sans leading-relaxed text-[#555555] max-w-2xl mx-auto mb-12"
+          className="relative text-[20px] md:text-[22px] font-sans leading-[1.6] text-[#444444] max-w-[600px] mx-auto mb-14"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          AI-powered contract review with the right level of human legal oversight. Attorney-validated contract review from $250.
+          AI-powered contract review with the right level of human legal oversight. Standardized pricing from $250.
         </motion.p>
 
-        {/* CTA Button - Dark pill with enhanced backdrop */}
+        {/* CTA Button Block */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative"
+          transition={{ type: "spring", damping: 25, stiffness: 100, delay: 0.6 }}
+          className="relative flex flex-col items-center gap-6"
         >
-          {/* CTA backdrop glow */}
-          <div className="absolute inset-0 -inset-x-8 -inset-y-4 bg-white/60 rounded-full blur-2xl pointer-events-none" />
           <motion.button
             onClick={onOpenModal}
-            className="relative group inline-flex items-center gap-3 px-8 py-4 bg-[#1a1a1a] text-white rounded-full font-semibold text-base overflow-hidden transition-all duration-500 shadow-xl hover:shadow-2xl"
+            className="relative group inline-flex items-center gap-4 px-10 py-5 bg-[#111111] text-white rounded-full font-medium text-[18px] transition-all duration-500 shadow-xl hover:shadow-[#0E5A45]/20"
             whileHover={{
-              scale: 1.02,
+              scale: 1.03,
+              backgroundColor: "#0E5A45",
+              y: -2
             }}
             whileTap={{ scale: 0.98 }}
             data-testid="hero-primary-cta"
           >
-            <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
             <span className="relative z-10">Talk to Us</span>
-            <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2} />
+            <motion.div
+              animate={{ x: [0, 4, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <ArrowRight className="w-5 h-5" strokeWidth={2.5} />
+            </motion.div>
           </motion.button>
+
+          {/* Micro-copy - Friction reduction */}
+          <p className="text-[14px] text-[#666666] tracking-wide font-medium">
+            No commitment. Flat pricing. Confidential.
+          </p>
         </motion.div>
 
       </motion.div>

@@ -78,22 +78,22 @@ export const Header = ({ onOpenModal }) => {
           <div className="flex items-center justify-between h-[76px]">
             {/* Logo */}
             <a href="/" className="flex items-center z-50" data-testid="header-logo">
-              <span className={`text-[21px] font-semibold tracking-[-0.02em] ${mobileMenuOpen ? 'text-white' : 'text-[#18181b]'}`}>
+              <span className={`text-[22px] font-serif tracking-[-0.01em] ${mobileMenuOpen ? 'text-white' : 'text-[#0F0F0F]'}`}>
                 Lawvek
               </span>
             </a>
 
             {/* Desktop Navigation - Centered pill */}
             <nav className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2" data-testid="desktop-nav">
-              <div className="flex items-center gap-0.5 p-1.5 rounded-full bg-white/50 backdrop-blur-xl border border-white/60 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+              <div className="flex items-center gap-0.5 p-1 rounded-full bg-white/40 backdrop-blur-xl border border-white/40 shadow-sm">
                 {navLinks.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
-                    className="relative px-5 py-2 text-[13px] text-[#52525b] hover:text-[#18181b] rounded-full transition-all duration-300 font-medium group"
+                    className="relative px-5 py-2.5 text-[14px] text-[#4A4A4A] tracking-[0.04em] hover:text-[#0F0F0F] rounded-full transition-all duration-300 font-medium group"
                     data-testid={`nav-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                   >
-                    <span className="absolute inset-0 rounded-full bg-white/0 group-hover:bg-white/80 group-hover:shadow-sm transition-all duration-300" />
+                    <span className="absolute inset-0 rounded-full bg-white/0 group-hover:bg-white/90 group-hover:shadow-sm transition-all duration-300" />
                     <span className="relative z-10">{link.label}</span>
                   </a>
                 ))}
@@ -104,13 +104,13 @@ export const Header = ({ onOpenModal }) => {
             <div className="hidden lg:flex items-center">
               <motion.button
                 onClick={onOpenModal}
-                className="group flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[13px] bg-[#18181b] text-white shadow-sm hover:shadow-md transition-shadow duration-200"
+                className="group flex items-center gap-2.5 px-6 py-2.5 rounded-full font-medium text-[14px] bg-[#111111] text-white shadow-sm hover:bg-[#0E5A45] transition-all duration-300"
                 data-testid="header-cta"
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ y: -1 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <span>Talk to Us</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" strokeWidth={2} />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" strokeWidth={2.5} />
               </motion.button>
             </div>
 
