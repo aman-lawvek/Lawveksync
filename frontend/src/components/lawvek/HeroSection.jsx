@@ -212,19 +212,16 @@ export const HeroSection = ({ onOpenModal }) => {
           Contract review<br />
           <span className="text-[#1a1a1a]">without </span>
           <motion.span
-            className="text-transparent bg-clip-text bg-gradient-to-r from-[#172554] via-[#1e40af] via-[#3b82f6] via-[#60a5fa] via-emerald-400 via-[#3b82f6] via-[#1e40af] to-[#172554] inline-block"
+            className="text-transparent bg-clip-text bg-gradient-to-r from-[#1e3a8a] via-[#3b82f6] via-[#60a5fa] to-[#1e3a8a] inline-block pb-1"
             animate={{
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              filter: [
-                "brightness(1) contrast(1.1) saturate(1.2)",
-                "brightness(1.3) contrast(1.4) saturate(1.4)",
-                "brightness(1) contrast(1.1) saturate(1.2)"
-              ]
             }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
             style={{
-              backgroundSize: '400% 100%',
-              textShadow: '0 0 15px rgba(30, 64, 175, 0.2)',
+              backgroundSize: '200% auto',
+              textShadow: '0 0 10px rgba(59, 130, 246, 0.1)',
+              display: 'inline-block',
+              paddingBottom: '0.15em',
             }}
           >
             hourly billing.
