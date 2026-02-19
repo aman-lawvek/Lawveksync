@@ -28,7 +28,7 @@ export const NetworkBackground = memo(() => {
         const shieldRadiusYSq = shield.radiusY * shield.radiusY;
 
         const setCanvasSize = () => {
-            const dpr = Math.min(window.devicePixelRatio, 2);
+            const dpr = Math.min(window.devicePixelRatio, 2); // Cap DPR for performance
             const width = window.innerWidth;
             const height = window.innerHeight;
 
@@ -41,8 +41,6 @@ export const NetworkBackground = memo(() => {
             dimensionsRef.current = { width, height };
             shield.x = width / 2;
             shield.y = height / 2;
-            shield.radiusX = width * 0.45; // Dynamically keep center clear
-            shield.radiusY = height * 0.35;
         };
 
         const handleResize = () => {
@@ -65,41 +63,48 @@ export const NetworkBackground = memo(() => {
             constructor(width, height) {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                this.baseSize = Math.random() * 2 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.2;
-                this.speedY = (Math.random() - 0.5) * 0.2;
+                this.baseSize = Math.random() * 3.2 + 1.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
                 this.density = Math.random() * 30 + 1;
 
-                // Refined distribution - lower noise
+                // Royal color distribution
                 const colorRoll = Math.random();
-                if (colorRoll < 0.08) {
-                    this.colorType = 0; // refined gold
-                    this.fillStyle = 'rgba(218, 165, 32, 0.4)';
-                    this.shadowColor = 'rgba(255, 215, 0, 0.2)';
+                if (colorRoll < 0.15) {
+                    this.colorType = 0; // gold
+                    this.fillStyle = 'rgba(218, 165, 32, 0.9)';
+                    this.shadowColor = 'rgba(255, 215, 0, 0.7)';
+                    this.shadowBlur = 15;
+                } else if (colorRoll < 0.25) {
+                    this.colorType = 1; // royal
+                    this.fillStyle = 'rgba(65, 105, 180, 0.75)';
+                    this.shadowColor = 'rgba(65, 105, 180, 0.5)';
+                    this.shadowBlur = 12;
+                } else if (colorRoll < 0.30) {
+                    this.colorType = 2; // anchor
+                    this.fillStyle = 'rgba(25, 40, 65, 0.7)';
+                    this.shadowColor = 'rgba(25, 40, 65, 0.4)';
                     this.shadowBlur = 10;
-                } else if (colorRoll < 0.15) {
-                    this.colorType = 1; // subtle royal
-                    this.fillStyle = 'rgba(14, 90, 69, 0.25)'; // Using Deep Legal Green
-                    this.shadowColor = 'rgba(14, 90, 69, 0.1)';
-                    this.shadowBlur = 8;
                 } else {
-                    this.colorType = 3; // minimal standard
-                    this.fillStyle = `rgba(100, 116, 139, ${0.1 + Math.random() * 0.15})`;
-                    this.shadowColor = 'transparent';
-                    this.shadowBlur = 0;
+                    this.colorType = 3; // standard
+                    const depthOpacity = 0.45 + Math.random() * 0.35;
+                    this.fillStyle = `rgba(35, 45, 65, ${depthOpacity})`;
+                    this.shadowColor = 'rgba(35, 45, 65, 0.2)';
+                    this.shadowBlur = 5;
                 }
 
                 this.pulseOffset = Math.random() * Math.PI * 2;
                 this.depth = Math.random();
-                this.depthFactor = 0.5 + this.depth * 0.5;
+                this.depthFactor = 0.6 + this.depth * 0.4;
                 this.sparklePhase = Math.random() * Math.PI * 2;
-                this.anchorSizeMultiplier = 1;
+                this.anchorSizeMultiplier = this.colorType === 2 ? 2 : 1;
             }
         }
 
         const initParticles = () => {
             const { width, height } = dimensionsRef.current;
-            const count = 160; // Fixed count for consistent minimalism
+            const area = width * height;
+            const count = Math.min(Math.floor(area / 7500), 250); // Slightly reduced for performance
 
             particlesRef.current = [];
             for (let i = 0; i < count; i++) {
@@ -124,14 +129,16 @@ export const NetworkBackground = memo(() => {
         const animate = (time) => {
             animationRef.current = requestAnimationFrame(animate);
 
+            // Frame rate limiting - target ~45fps for smooth but performant animation
             const elapsed = time - lastFrameTimeRef.current;
-            if (elapsed < 22) return;
+            if (elapsed < 22) return; // ~45fps
             lastFrameTimeRef.current = time;
 
             const { width, height } = dimensionsRef.current;
             const particles = particlesRef.current;
 
-            ctx.fillStyle = '#F9F9F9';
+            // Clear with background color (faster than clearRect + separate bg)
+            ctx.fillStyle = '#FFFEF8';
             ctx.fillRect(0, 0, width, height);
 
             // Update and draw particles
@@ -254,7 +261,7 @@ export const NetworkBackground = memo(() => {
                                 const shieldFade = Math.min(1, (midNormalizedDist - 0.85) / 0.3);
                                 const dist = Math.sqrt(distSq);
                                 const distRatio = dist / MAX_DIST;
-                                const opacity = (1 - distRatio * distRatio) * 0.25 * shieldFade;
+                                const opacity = (1 - distRatio * distRatio) * 0.32 * shieldFade;
 
                                 let lineOpacity = opacity;
                                 if (mouse.x !== null) {

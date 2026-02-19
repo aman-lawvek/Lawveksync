@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Serif+Display:ital,wght@0,400;1,400&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,12 +7,12 @@
 @layer base {
     :root {
         --background: 0 0% 97.6%;
-        --foreground: 0 0% 6.3%;
+        --foreground: 0 0% 10%;
         --card: 0 0% 100%;
-        --card-foreground: 0 0% 6.3%;
+        --card-foreground: 0 0% 10%;
         --popover: 0 0% 100%;
-        --popover-foreground: 0 0% 6.3%;
-        --primary: 165 73% 20%; /* #0E5A45 */
+        --popover-foreground: 0 0% 10%;
+        --primary: 217 33% 17%;
         --primary-foreground: 0 0% 98%;
         --secondary: 210 40% 96%;
         --secondary-foreground: 217 33% 17%;
@@ -24,15 +24,14 @@
         --destructive-foreground: 0 0% 98%;
         --border: 214 32% 91%;
         --input: 214 32% 91%;
-        --ring: 165 73% 20%;
+        --ring: 217 33% 17%;
         --radius: 0.125rem;
-        
+
         --lawvek-bg: #F9F9F9;
         --lawvek-paper: #FFFFFF;
-        --lawvek-primary: #0E5A45;
-        --lawvek-text: #0F0F0F;
-        --lawvek-subtext: #4A4A4A;
-        --lawvek-muted: #666666;
+        --lawvek-primary: #1E293B;
+        --lawvek-text: #1A1A1A;
+        --lawvek-muted: #475569;
         --lawvek-border: #E2E8F0;
         --lawvek-secondary-bg: #F1F5F9;
     }
@@ -42,34 +41,40 @@
     * {
         @apply border-border;
     }
-    
+
     html {
         scroll-behavior: smooth;
     }
-    
+
     body {
-        @apply bg-[#F9F9F9] text-[#0F0F0F] antialiased;
-        font-family: 'Inter', 'Manrope', sans-serif;
+        @apply bg-[#F9F9F9] text-[#1A1A1A] antialiased;
+        font-family: 'Manrope', sans-serif;
     }
-    
-    h1, h2, h3, h4, h5, h6 {
-        font-family: 'DM Serif Display', serif;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Playfair Display', serif;
     }
-    
-    code, pre {
+
+    code,
+    pre {
         font-family: 'JetBrains Mono', monospace;
     }
 }
 
 @layer utilities {
     .font-serif {
-        font-family: 'DM Serif Display', serif;
+        font-family: 'Playfair Display', serif;
     }
-    
+
     .font-sans {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Manrope', sans-serif;
     }
-    
+
     .font-mono {
         font-family: 'JetBrains Mono', monospace;
     }
@@ -95,9 +100,12 @@
 
 /* Animated gradient for premium buttons */
 @keyframes gradient-x {
-    0%, 100% {
+
+    0%,
+    100% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
