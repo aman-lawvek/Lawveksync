@@ -75,7 +75,7 @@ export const WhyLawvekSection = () => {
                         Built for Speed. <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Not Billable Hours.</span>
                     </h2>
                     <p className="text-base md:text-lg text-slate-400 leading-relaxed max-w-2xl">
-                        See how Lawvek's attorney-led AI pipeline stacks up against the traditional law firm model.
+                        See how Lawvek pairs advanced AI with real legal experts — and why it outperforms the traditional law firm model.
                     </p>
                 </motion.div>
 
