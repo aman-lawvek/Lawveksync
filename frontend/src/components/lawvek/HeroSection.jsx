@@ -212,7 +212,7 @@ export const HeroSection = ({ onOpenModal }) => {
           Contract review<br />
           <span className="text-[#1a1a1a]">without </span>
           <motion.span
-            className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-emerald-400 to-cyan-600 italic font-semibold tracking-tight inline-block"
+            className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-emerald-400 to-cyan-600 inline-block"
             animate={{
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
               filter: ["brightness(1)", "brightness(1.2)", "brightness(1)"]
