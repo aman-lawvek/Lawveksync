@@ -97,7 +97,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
 
       // 1. Sync with your Backend
       console.log("Attemping to sync with backend...", formData.email);
-      await axios.post('http://localhost:8000/api/bookings', {
+      await axios.post('/api/bookings', {
         name: formData.name,
         email: formData.email,
         company_size: formData.companySize,
