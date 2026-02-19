@@ -68,7 +68,7 @@ export const WhyLawvekSection = () => {
                         transition={{ duration: 0.4 }}
                     >
                         <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-                        <span className="text-xs font-semibold text-emerald-400 tracking-wider uppercase">Comparison</span>
+                        <span className="text-xs font-semibold text-emerald-400 tracking-wider uppercase">Why Lawvek</span>
                     </motion.span>
 
                     <h2 className="text-3xl md:text-4xl font-serif tracking-tight text-white mb-4">
