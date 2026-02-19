@@ -16,7 +16,7 @@ export const WhyLawvekSection = () => {
         {
             feature: 'Process',
             traditional: 'Email chains, handoffs, and unclear ownership',
-            lawvek: 'Work directly with your lawyer in Slack',
+            lawvek: 'Integrate to your present workflow',
         },
         {
             feature: 'Quality',

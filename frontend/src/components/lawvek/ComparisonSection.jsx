@@ -4,8 +4,8 @@ import { Check, X } from 'lucide-react';
 export const ComparisonSection = () => {
   const lawvekBenefits = [
     'Fixed pricing per contract at $250',
-    'Contract reviews done in hours by experienced attorneys',
-    'Work directly with your lawyer in Slack',
+    'Contract reviews delivered within 3 hours',
+    'Integrate to your present workflow',
     'Experienced, U.S.-barred attorneys on every contract',
   ];
 
