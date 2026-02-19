@@ -171,7 +171,7 @@ export const IntegrationsSection = () => {
               We live in <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">your workflow.</span>
             </h2>
             <p className="text-base md:text-lg text-slate-400 leading-relaxed mb-8 max-w-2xl">
-              Lawvek connects directly to the tools you already use — from Slack and email to your CLM platform. We process your contracts continuously and turn them into clear, reliable insights.
+              Lawvek becomes part of your daily workflow, pairing intelligent automation with seasoned legal oversight to deliver carefully redlined contracts, meaningful risk clarity, and reliable legal direction.
             </p>
 
             <motion.a
