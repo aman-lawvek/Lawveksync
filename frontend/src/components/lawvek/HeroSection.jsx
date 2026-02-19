@@ -210,7 +210,18 @@ export const HeroSection = ({ onOpenModal }) => {
           transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         >
           Contract review<br />
-          <span className="text-[#1a1a1a]">without hourly billing.</span>
+          <span className="text-[#1a1a1a]">without </span>
+          <motion.span
+            className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-emerald-400 to-cyan-600 italic font-semibold tracking-tight inline-block"
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              filter: ["brightness(1)", "brightness(1.2)", "brightness(1)"]
+            }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            style={{ backgroundSize: '200% auto' }}
+          >
+            hourly billing.
+          </motion.span>
         </motion.h1>
 
         {/* Description */}
