@@ -66,7 +66,7 @@ export const BenefitsSection = () => {
             Why leading teams <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-cyan-600">choose Lawvek.</span>
           </h2>
           <p className="text-base md:text-lg text-[#666666] leading-relaxed max-w-2xl">
-            Join 500+ legal teams that have transformed their contract workflow.
+            Join fast moving teams that have transformed their contract workflow.
           </p>
         </motion.div>
 
