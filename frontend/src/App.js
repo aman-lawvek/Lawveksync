@@ -10,6 +10,7 @@ import {
   HowItWorksSection,
   BenefitsSection,
   IntegrationsSection,
+  FAQSection,
   CTASection,
   EarlyAccessModal,
   Footer,
@@ -45,6 +46,7 @@ const LandingPage = () => {
         <HowItWorksSection />
         <BenefitsSection />
         <IntegrationsSection />
+        <FAQSection />
         <CTASection onOpenModal={openModal} />
       </main>
       <Footer />

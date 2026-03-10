@@ -31,6 +31,7 @@ export const Header = ({ onOpenModal }) => {
     { label: 'How It Works', href: '#how-it-works' },
     { label: 'Benefits', href: '#benefits' },
     { label: 'Integrations', href: '#integrations' },
+    { label: 'FAQ', href: '#faq' },
   ];
 
   const menuVariants = {
