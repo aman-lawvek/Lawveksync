@@ -52,8 +52,9 @@ class BookingCreate(BaseModel):
     name: str
     email: str
     company_size: str
-    scheduled_at: str
-    time_slot: str
+    scheduled_at: str = "Pending"
+    time_slot: str = "Pending"
+    type: str = "booking" # 'lead' or 'booking'
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
@@ -106,18 +107,39 @@ async def create_booking(input: BookingCreate):
     if zapier_url:
         logger.info(f"Triggering Zapier Hook: {zapier_url}")
         try:
-            # Create a clean copy for Zapier without MongoDB specific fields
             zapier_payload = doc.copy()
             zapier_payload.pop('_id', None) 
-            
             response = requests.post(zapier_url, json=zapier_payload, timeout=10)
-            logger.info(f"Zapier response: {response.status_code} - {response.text}")
+            logger.info(f"Zapier response: {response.status_code}")
         except Exception as e:
             logger.error(f"Zapier request failed: {str(e)}")
-    else:
-        logger.error("CRITICAL: ZAPIER_WEBHOOK_URL is not set in environment!")
+
+    # 3. Trigger Google Sheets Sync if configured
+    sheets_url = os.environ.get('GOOGLE_SHEET_WEBAPP_URL')
+    if sheets_url:
+        logger.info(f"Syncing to Google Sheets: {sheets_url}")
+        try:
+            sheets_payload = {
+                "name": doc['name'],
+                "email": doc['email'],
+                "company_size": doc['company_size'],
+                "scheduled_at": doc.get('scheduled_at', 'Pending'),
+                "time_slot": doc.get('time_slot', 'Pending'),
+                "timestamp": doc['timestamp'],
+                "type": getattr(input, 'type', 'booking'),
+                "sheet_url": "https://docs.google.com/spreadsheets/d/162ByO1FlETrq-71sO8Swu0wqPxm32gbM3syzx1jwKo4/edit"
+            }
+            response = requests.post(sheets_url, json=sheets_payload, timeout=10)
+            logger.info(f"Google Sheets sync response: {response.status_code}")
+        except Exception as e:
+            logger.error(f"Google Sheets sync failed: {str(e)}")
             
     return booking_obj
+
+@api_router.post("/leads", response_model=Booking)
+async def create_lead(input: BookingCreate):
+    input.type = "lead"
+    return await create_booking(input)
 
 @api_router.get("/bookings", response_model=List[Booking])
 async def get_bookings():

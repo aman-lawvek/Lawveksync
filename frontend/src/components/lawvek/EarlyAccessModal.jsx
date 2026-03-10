@@ -97,7 +97,7 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
 
       // 1. Sync with your Backend
       console.log("Attemping to sync with backend...", formData.email);
-      await axios.post('/api/bookings', {
+      await axios.post('http://localhost:8000/api/bookings', {
         name: formData.name,
         email: formData.email,
         company_size: formData.companySize,
@@ -153,7 +153,21 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1200));
+
+    // Capture the lead immediately
+    try {
+      await axios.post('http://localhost:8000/api/leads', {
+        name: formData.name,
+        email: formData.email,
+        company_size: formData.companySize,
+        type: 'lead'
+      }, { timeout: 5000 });
+      console.log("Initial lead captured");
+    } catch (err) {
+      console.error("Initial lead capture failed (continuing):", err.message);
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 800));
     setIsSubmitting(false);
     setStep('scheduling');
     if (onSuccess) {
@@ -235,16 +249,6 @@ export const EarlyAccessModal = ({ isOpen, onClose, onSuccess, queueCount = 37 }
 
                 {step === 'form' && (
                   <div className="p-6 md:p-8">
-                    {/* Header row with badge */}
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200">
-                        <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                        <span className="text-amber-600 text-[11px] font-semibold tracking-wide uppercase">
-                          {spotsRemaining > 0 ? `Only ${spotsRemaining} spots left` : 'Waitlist Full'}
-                        </span>
-                      </div>
-                    </div>
-
                     {/* Header */}
                     <div className="mb-6 pr-8">
                       <h2 className="text-2xl font-serif text-slate-900 mb-2">
