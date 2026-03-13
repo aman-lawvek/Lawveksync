@@ -16,3 +16,4 @@ export { Footer } from './Footer';
 export { SubtleNetworkBg } from './SubtleNetworkBg';
 export { FAQSection } from './FAQSection';
 export { WhyLawvekSection } from './WhyLawvekSection';
+export { NetworkBackground } from './NetworkBackground';

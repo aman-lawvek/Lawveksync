@@ -87,7 +87,9 @@ async def get_status_checks():
 
 @api_router.post("/bookings", response_model=Booking)
 async def create_booking(input: BookingCreate):
-    logger.info(f"RECEIVED BOOKING REQUEST: {input.email}")
+    capture_type = getattr(input, 'type', 'booking')
+    logger.info(f"RECEIVED {capture_type.upper()} REQUEST: {input.email}")
+    
     booking_dict = input.model_dump()
     booking_obj = Booking(**booking_dict)
     
@@ -96,25 +98,26 @@ async def create_booking(input: BookingCreate):
     
     # 1. Try to save to MongoDB (Optional)
     try:
-        # Save to MongoDB
         _ = await db.bookings.insert_one(doc)
         logger.info("Saved to MongoDB successfully")
     except Exception as e:
         logger.warning(f"Database save failed (continuing): {str(e)}")
     
-    # 2. Trigger Zapier Webhook if configured
-    zapier_url = os.environ.get('ZAPIER_WEBHOOK_URL')
-    if zapier_url:
-        logger.info(f"Triggering Zapier Hook: {zapier_url}")
-        try:
-            zapier_payload = doc.copy()
-            zapier_payload.pop('_id', None) 
-            response = requests.post(zapier_url, json=zapier_payload, timeout=10)
-            logger.info(f"Zapier response: {response.status_code}")
-        except Exception as e:
-            logger.error(f"Zapier request failed: {str(e)}")
-
-    # 3. Trigger Google Sheets Sync if configured
+    # 2. Trigger Zapier Webhook ONLY for bookings (not initial leads)
+    # This prevents users from getting "Confirmation" emails with "Pending" dates
+    if capture_type == 'booking':
+        zapier_url = os.environ.get('ZAPIER_WEBHOOK_URL')
+        if zapier_url:
+            logger.info(f"Triggering Zapier Hook: {zapier_url}")
+            try:
+                zapier_payload = doc.copy()
+                zapier_payload.pop('_id', None) 
+                response = requests.post(zapier_url, json=zapier_payload, timeout=10)
+                logger.info(f"Zapier response: {response.status_code} - {response.text}")
+            except Exception as e:
+                logger.error(f"Zapier request failed: {str(e)}")
+    
+    # 3. Trigger Google Sheets Sync
     sheets_url = os.environ.get('GOOGLE_SHEET_WEBAPP_URL')
     if sheets_url:
         logger.info(f"Syncing to Google Sheets: {sheets_url}")
@@ -123,10 +126,6 @@ async def create_booking(input: BookingCreate):
                 "name": doc['name'],
                 "email": doc['email'],
                 "company_size": doc['company_size'],
-                "scheduled_at": doc.get('scheduled_at', 'Pending'),
-                "time_slot": doc.get('time_slot', 'Pending'),
-                "timestamp": doc['timestamp'],
-                "type": getattr(input, 'type', 'booking'),
                 "sheet_url": "https://docs.google.com/spreadsheets/d/162ByO1FlETrq-71sO8Swu0wqPxm32gbM3syzx1jwKo4/edit"
             }
             response = requests.post(sheets_url, json=sheets_payload, timeout=10)

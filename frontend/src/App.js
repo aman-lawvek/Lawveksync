@@ -1,6 +1,8 @@
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import PriorityAccess from "@/pages/PriorityAccess";
+import Confirmation from "@/pages/Confirmation";
 import {
   Header,
   HeroSection,
@@ -60,12 +62,15 @@ const LandingPage = () => {
   );
 };
 
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/priority-access" element={<PriorityAccess />} />
+          <Route path="/confirmation" element={<Confirmation />} />
         </Routes>
       </BrowserRouter>
     </div>
